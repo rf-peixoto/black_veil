@@ -1,0 +1,6 @@
+import secrets
+#-----#
+print("Template for payloads")
+print(secrets.token_urlsafe(8))
+#-----#
+# Crypter stuff goes here.
