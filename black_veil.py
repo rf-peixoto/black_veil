@@ -18,7 +18,7 @@ print("                                       v1.0.0\033[00m")
 # -------------------------------------- #
 # Check args:
 if len(sys.argv) != 2:
-    print("\n\033[94m[*]\033[00m Usage {0} filepath.py".format(sys.argv[0]))
+    print("\n\033[94m[*]\033[00m Usage: {0} path/to/file.py".format(sys.argv[0]))
     sys.exit()
 
 # Encrypt function:
