@@ -55,7 +55,7 @@ for i in "{0}".format(digits + punctuation):
 print("\033[92mDONE\033[00m")
 
 # Generate decrypt function:
-print("\033[94m[*]\033[00m Generating decrypt function:\t\t\t", end="")
+print("\033[94m[*]\033[00m Generating decrypt function:\t\t", end="")
 decrypt_function = """def decrypt(content: bytes, key='{0}') -> str:
     key_id = 0
     xored = ''
