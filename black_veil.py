@@ -41,6 +41,7 @@ try:
 except Exception as error:
     print("\033[91mERROR\033[00m")
     print("\t" + str(error))
+    print("\tMake sure your code has the two cut lines.")
     sys.exit()
 
 # -------------------------------------- #
