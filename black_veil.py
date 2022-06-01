@@ -33,7 +33,7 @@ def encrypt(content: str, key: str) -> bytes:
 # -------------------------------------- #
 #  READ FILE                             #
 # -------------------------------------- #
-print("\n\033[94m[*]\033[00m Reading {0}:\t\t\t\t".format(sys.argv[1]), end="")
+print("\n\033[94m[*]\033[00m Reading {0}:\t\t\t".format(sys.argv[1]), end="")
 try:
     with open(sys.argv[1], "r") as fl:
         data = fl.read().split("#-----#")
@@ -55,7 +55,7 @@ for i in "{0}".format(digits + punctuation):
 print("\033[92mDONE\033[00m")
 
 # Generate decrypt function:
-print("\033[94m[*]\033[00m Generating decrypt function:\t\t\t\t", end="")
+print("\033[94m[*]\033[00m Generating decrypt function:\t\t\t", end="")
 decrypt_function = """def decrypt(content: bytes, key='{0}') -> str:
     key_id = 0
     xored = ''
@@ -90,7 +90,7 @@ except Exception as error:
 # -------------------------------------- #
 #  CREATE FOOTER                         #
 # -------------------------------------- #
-print("\033[94m[*]\033[00m Generating file footer:\t\t\t\t", end="")
+print("\033[94m[*]\033[00m Generating file footer:\t\t\t", end="")
 footer = 'exec(decrypt({0}))'.format(encoded_payload)
 print("\033[92mDONE\033[00m")
 
