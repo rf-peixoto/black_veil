@@ -104,7 +104,7 @@ try:
         fl.write(header + "\n")
         fl.write(footer)
     print("\033[92mDONE\033[00m")
-    print("\tFile exported to \033[92m{0}\033[00m".format(new_filename))
+    print("\tFile exported to \033[92m{0}\033[00m\n".format(new_filename))
 except Exception as error:
     print("\033[91mERROR\033[00m")
     print("\t" + str(error))
