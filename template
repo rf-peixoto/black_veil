@@ -1,6 +1,5 @@
-import secrets
+Import modules here.
 #-----#
-print("Template for payloads")
-print(secrets.token_urlsafe(8))
+Your code goes here.
 #-----#
-# Crypter stuff goes here.
+# Black Veil stuff goes here.
