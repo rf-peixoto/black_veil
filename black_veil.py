@@ -117,7 +117,7 @@ except Exception as error:
 #  COMPILE                               #
 # -------------------------------------- #
 if generated_file:
-    print("\033[94m[*]\033[00m Compile?:")
+    print("\033[94m[*]\033[00m Compile? [y/N]:")
     opt = input(">>> ").lower()
     if opt in ["yes", "y"]:
         print("\033[94m[*]\033[00m Compiling:    ", end="")
