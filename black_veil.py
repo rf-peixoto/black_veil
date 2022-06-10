@@ -1,4 +1,4 @@
-import sys
+import sys, platform
 import binascii, subprocess
 from secrets import token_urlsafe
 from string import digits, punctuation
@@ -20,6 +20,9 @@ print("                                       v1.0.0\033[00m")
 if len(sys.argv) != 2:
     print("\n\033[94m[*]\033[00m Usage: {0} path/to/file.py".format(sys.argv[0]))
     sys.exit()
+# Check System:
+if platform.system() != "Linux":
+    print("\n\033[93m[!] {0} should be used in Linux environments!\033[00m".format(sys.argv[0]))
 
 # Encrypt function:
 def encrypt(content: str, key: str) -> bytes:
