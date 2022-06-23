@@ -1,5 +1,5 @@
 # Black Veil
-Black Veil is a simple python code crypter that uses XOR encryption to encrypt payloads. The code must be structured according to the template. Usage:
+Black Veil is a simple python code crypter that uses XOR encryption to encrypt payloads for AV evasion, not obfuscation. The code must be structured according to the template. Usage:
 `python3 black_veil.py [your python file]`
 
 ## Donate
