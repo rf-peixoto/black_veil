@@ -123,10 +123,15 @@ if generated_file:
     print("\033[94m[*]\033[00m Compile? [y/N]:")
     opt = input(">>> ").lower()
     if opt in ["yes", "y"]:
+        comp_key = token_urlsafe(256)
+        for i in punctuation:
+            if i in comp_key:
+                comp_key = comp_key.replace(i, "")
+
         print("\033[94m[*]\033[00m Compiling:    ", end="")
         # Compile:
         try:
-            cmd = "pyinstaller --distpath . --name {2} --noconfirm --onefile --key {0} --noconsole {1}".format(unique_key, new_filename, sys.argv[1].split(".")[0])
+            cmd = "pyinstaller --distpath . --name {2} --noconfirm --onefile --key {0} --noconsole {1}".format(comp_key, new_filename, sys.argv[1].split(".")[0])
             subprocess.run(cmd, shell=True)
             # Clean:
             #cmd = "mv dist/{0} .".format(new_filename)
