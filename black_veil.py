@@ -11,7 +11,7 @@ print("  __ )   |               |        \ \     /     _)  |")
 print("  __ \   |   _` |   __|  |  /      \ \   /  _ \  |  |")
 print("  |   |  |  (   |  (       <        \ \ /   __/  |  |")
 print(" ____/  _| \__,_| \___| _|\_\        \_/  \___| _| _____|")
-print("                                       v1.1.0\033[00m")
+print("                                       v1.1.5\033[00m")
 
 # -------------------------------------- #
 #  SETUP                                 #
@@ -134,12 +134,12 @@ if generated_file:
             cmd = "pyinstaller --distpath . --name {2} --noconfirm --onefile --key {0} --noconsole {1}".format(comp_key, new_filename, sys.argv[1].split(".")[0])
             subprocess.run(cmd, shell=True)
             # Clean:
-            #cmd = "mv dist/{0} .".format(new_filename)
             cmd = "rm -rf build/ {0}.spec".format(sys.argv[1].split(".")[0])
             subprocess.run(cmd, shell=True)
             # SUCCESS:
             print("\033[92mDONE\033[00m")
         except Exception as error:
+            # ERROR:
             print("\033[91mERROR\033[00m")
             print("\t" + str(error))
             sys.exit()
