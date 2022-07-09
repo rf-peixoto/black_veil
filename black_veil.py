@@ -13,9 +13,6 @@ print("  |   |  |  (   |  (       <        \ \ /   __/  |  |")
 print(" ____/  _| \__,_| \___| _|\_\        \_/  \___| _| _____|")
 print("                                       v1.1.5\033[00m")
 
-# -------------------------------------- #
-#  SETUP                                 #
-# -------------------------------------- #
 # Check args:
 if len(sys.argv) != 2:
     print("\n\033[94m[*]\033[00m Usage: {0} path/to/file.py".format(sys.argv[0]))
@@ -23,6 +20,12 @@ if len(sys.argv) != 2:
 # Check System:
 if platform.system() != "Linux":
     print("\n\033[93m[!] {0} should be used in Linux environments!\033[00m".format(sys.argv[0]))
+
+# -------------------------------------- #
+#  SETUP                                 #
+# -------------------------------------- #
+
+KEY_SIZE = 2048
 
 # Encrypt function:
 def encrypt(content: str, key: str) -> bytes:
@@ -53,7 +56,7 @@ except Exception as error:
 # -------------------------------------- #
 # Generate key:
 print("\033[94m[*]\033[00m Generating key:    ", end="")
-unique_key = token_urlsafe(128)
+unique_key = token_urlsafe(KEY_SIZE)
 for i in "{0}".format(digits + punctuation):
     if i in unique_key:
         unique_key = unique_key.replace(i, "")
@@ -123,7 +126,7 @@ if generated_file:
     print("\033[94m[*]\033[00m Compile? [y/N]:")
     opt = input(">>> ").lower()
     if opt in ["yes", "y"]:
-        comp_key = token_urlsafe(256)
+        comp_key = token_urlsafe(KEY_SIZE)
         for i in punctuation:
             if i in comp_key:
                 comp_key = comp_key.replace(i, "")
