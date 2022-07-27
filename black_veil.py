@@ -27,6 +27,14 @@ if platform.system() != "Linux":
 
 KEY_SIZE = 2048
 
+# Clean Token:
+def clean(token: str) -> str:
+    tmp = token
+    for i in "{0}".format(digits + punctuation):
+        if i in tmp:
+            tmp = tmp.replace(i, "")
+    return tmp
+
 # Encrypt function:
 def encrypt(content: str, key: str) -> bytes:
     key_id = 0
@@ -56,22 +64,19 @@ except Exception as error:
 # -------------------------------------- #
 # Generate key:
 print("\033[94m[*]\033[00m Generating key:    ", end="")
-unique_key = token_urlsafe(KEY_SIZE)
-for i in "{0}".format(digits + punctuation):
-    if i in unique_key:
-        unique_key = unique_key.replace(i, "")
+unique_key = clean(token_urlsafe(KEY_SIZE))
 print("\033[92mDONE\033[00m")
 
 # Generate decrypt function:
 print("\033[94m[*]\033[00m Generating decrypt function:    ", end="")
 decrypt_function = """def decrypt(content: bytes, key='{0}') -> str:
-    key_id = 0
-    xored = ''
-    for key_id, c in enumerate(binascii.unhexlify(content).decode()):
-        xored += chr(ord(key[key_id % len(key)]) ^ ord(c))
-        key_id += 1
-    return xored
-""".format(unique_key)
+    k{1} = 0
+    x{2} = ''
+    for k{1}, c{3} in enumerate(binascii.unhexlify(content).decode()):
+        x{2} += chr(ord(key[k{1} % len(key)]) ^ ord(c{3}))
+        k{1} += 1
+    return x{2}
+""".format(unique_key, clean(token_urlsafe(8)), clean(token_urlsafe(8)), clean(token_urlsafe(8)))
 print("\033[92mDONE\033[00m")
 
 # -------------------------------------- #
