@@ -21,12 +21,6 @@ if len(sys.argv) != 2:
 if platform.system() != "Linux":
     print("\n\033[93m[!] {0} should be used in Linux environments!\033[00m".format(sys.argv[0]))
 
-# -------------------------------------- #
-#  SETUP                                 #
-# -------------------------------------- #
-
-KEY_SIZE = 2048
-
 # Clean Token:
 def clean(token: str) -> str:
     tmp = token
@@ -34,6 +28,13 @@ def clean(token: str) -> str:
         if i in tmp:
             tmp = tmp.replace(i, "")
     return tmp
+
+# -------------------------------------- #
+#  SETUP                                 #
+# -------------------------------------- #
+
+KEY_SIZE = 2048
+DEC_FNAME = 'dec_{0}'.format(clean(token_urlsafe(8))).lower()
 
 # Encrypt function:
 def encrypt(content: str, key: str) -> bytes:
@@ -69,14 +70,14 @@ print("\033[92mDONE\033[00m")
 
 # Generate decrypt function:
 print("\033[94m[*]\033[00m Generating decrypt function:    ", end="")
-decrypt_function = """def decrypt(content: bytes, key='{0}') -> str:
+decrypt_function = """def {4}(content: bytes, key='{0}') -> str:
     k{1} = 0
     x{2} = ''
     for k{1}, c{3} in enumerate(binascii.unhexlify(content).decode()):
         x{2} += chr(ord(key[k{1} % len(key)]) ^ ord(c{3}))
         k{1} += 1
     return x{2}
-""".format(unique_key, clean(token_urlsafe(8)), clean(token_urlsafe(8)), clean(token_urlsafe(8)))
+""".format(unique_key, clean(token_urlsafe(8)), clean(token_urlsafe(8)), clean(token_urlsafe(8)), DEC_FNAME)
 print("\033[92mDONE\033[00m")
 
 # -------------------------------------- #
@@ -104,7 +105,7 @@ except Exception as error:
 #  CREATE FOOTER                         #
 # -------------------------------------- #
 print("\033[94m[*]\033[00m Generating file footer:    ", end="")
-footer = 'exec(decrypt({0}))'.format(encoded_payload)
+footer = 'exec({1}({0}))'.format(encoded_payload, DEC_FNAME)
 print("\033[92mDONE\033[00m")
 
 # -------------------------------------- #
