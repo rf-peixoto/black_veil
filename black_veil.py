@@ -70,14 +70,14 @@ print("\033[92mDONE\033[00m")
 
 # Generate decrypt function:
 print("\033[94m[*]\033[00m Generating decrypt function:    ", end="")
-decrypt_function = """def {4}(content: bytes, key='{0}') -> str:
+decrypt_function = """def {4}(content: bytes, {5}='{0}') -> str:
     k{1} = 0
     x{2} = ''
     for k{1}, c{3} in enumerate(binascii.unhexlify(content).decode()):
-        x{2} += chr(ord(key[k{1} % len(key)]) ^ ord(c{3}))
+        x{2} += chr(ord({5}[k{1} % len({5})]) ^ ord(c{3}))
         k{1} += 1
     return x{2}
-""".format(unique_key, clean(token_urlsafe(8)), clean(token_urlsafe(8)), clean(token_urlsafe(8)), DEC_FNAME)
+""".format(unique_key, clean(token_urlsafe(8)), clean(token_urlsafe(8)), clean(token_urlsafe(8)), DEC_FNAME, clean(token_urlsafe(8)))
 print("\033[92mDONE\033[00m")
 
 # -------------------------------------- #
