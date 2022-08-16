@@ -1,4 +1,5 @@
 import sys, platform
+from random import randint
 import binascii, subprocess
 from secrets import token_urlsafe
 from string import digits, punctuation
@@ -33,8 +34,8 @@ def clean(token: str) -> str:
 #  SETUP                                 #
 # -------------------------------------- #
 
-KEY_SIZE = 2048
-DEC_FNAME = 'dec_{0}'.format(clean(token_urlsafe(8))).lower()
+KEY_SIZE = randint(1024, 2048)
+DEC_FNAME = 'dec_{0}'.format(clean(token_urlsafe(randint(8, 16)))).lower()
 
 # Encrypt function:
 def encrypt(content: str, key: str) -> bytes:
@@ -77,7 +78,7 @@ decrypt_function = """def {6}({5}: bytes, {4}='{0}') -> str:
         x{2} += chr(ord({4}[k{1} % len({4})]) ^ ord(c{3}))
         k{1} += 1
     return x{2}
-""".format(unique_key, clean(token_urlsafe(8)), clean(token_urlsafe(8)), clean(token_urlsafe(8)), clean(token_urlsafe(8)), clean(token_urlsafe(8)), DEC_FNAME,)
+""".format(unique_key, clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), DEC_FNAME,)
 print("\033[92mDONE\033[00m")
 
 # -------------------------------------- #
