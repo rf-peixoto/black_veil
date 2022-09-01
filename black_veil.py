@@ -1,8 +1,8 @@
 import sys, platform
-from random import randint
+from random import randint, choice
 import binascii, subprocess
 from secrets import token_urlsafe
-from string import digits, punctuation
+from string import digits, punctuation, ascii_lowercase
 
 # -------------------------------------- #
 #  BANNER                                #
@@ -12,7 +12,7 @@ print("  __ )   |               |        \ \     /     _)  |")
 print("  __ \   |   _` |   __|  |  /      \ \   /  _ \  |  |")
 print("  |   |  |  (   |  (       <        \ \ /   __/  |  |")
 print(" ____/  _| \__,_| \___| _|\_\        \_/  \___| _| _____|")
-print("                                       v1.4.0\033[00m")
+print("                                       v1.5.0\033[00m")
 
 # Check args:
 if len(sys.argv) != 2:
@@ -22,20 +22,20 @@ if len(sys.argv) != 2:
 if platform.system() != "Linux":
     print("\n\033[93m[!] {0} should be used in Linux environments!\033[00m".format(sys.argv[0]))
 
-# Clean String:
+# Clean Token:
 def clean(token: str) -> str:
     tmp = token
     for i in "{0}".format(digits + punctuation):
         if i in tmp:
             tmp = tmp.replace(i, "")
-    return tmp
+    return choice(ascii_lowercase) + tmp
 
 # -------------------------------------- #
 #  SETUP                                 #
 # -------------------------------------- #
 
 KEY_SIZE = randint(1024, 2048)
-DEC_FNAME = 'dec_{0}'.format(clean(token_urlsafe(randint(8, 16)))).lower()
+DEC_FNAME = '{0}'.format(clean(token_urlsafe(randint(8, 16)))).lower()
 
 # Encrypt function:
 def encrypt(content: str, key: str) -> bytes:
@@ -71,13 +71,13 @@ print("\033[92mDONE\033[00m")
 
 # Generate decrypt function:
 print("\033[94m[*]\033[00m Generating decrypt function:    ", end="")
-decrypt_function = """def {6}({5}: bytes, {4}='{0}') -> str:
-    k{1} = 0
-    x{2} = ''
-    for k{1}, c{3} in enumerate(binascii.unhexlify({5}).decode()):
-        x{2} += chr(ord({4}[k{1} % len({4})]) ^ ord(c{3}))
-        k{1} += 1
-    return x{2}
+decrypt_function = """def {6}({5}, {4}='{0}'):
+    {1} = 0
+    {2} = ''
+    for {1}, {3} in enumerate(binascii.unhexlify({5}).decode()):
+        {2} += chr(ord({4}[{1} % len({4})]) ^ ord({3}))
+        {1} += 1
+    return {2}
 """.format(unique_key, clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), DEC_FNAME,)
 print("\033[92mDONE\033[00m")
 
