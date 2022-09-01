@@ -22,7 +22,7 @@ if len(sys.argv) != 2:
 if platform.system() != "Linux":
     print("\n\033[93m[!] {0} should be used in Linux environments!\033[00m".format(sys.argv[0]))
 
-# Clean Token:
+# Clean String:
 def clean(token: str) -> str:
     tmp = token
     for i in "{0}".format(digits + punctuation):
