@@ -78,7 +78,7 @@ decrypt_function = """def {6}({5}, {4}='{0}'):
         {2} += chr(ord({4}[{1} % len({4})]) ^ ord({3}))
         {1} += 1
     return {2}
-""".format(unique_key, clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), clean(token_urlsafe(randint(8, 16))), DEC_FNAME,)
+""".format(unique_key, clean(token_urlsafe(randint(4, 16))), clean(token_urlsafe(randint(4, 16))), clean(token_urlsafe(randint(4, 16))), clean(token_urlsafe(randint(4, 16))), clean(token_urlsafe(randint(4, 16))), DEC_FNAME)
 print("\033[92mDONE\033[00m")
 
 # -------------------------------------- #
