@@ -34,7 +34,7 @@ def clean(token: str) -> str:
 #  SETUP                                 #
 # -------------------------------------- #
 
-KEY_SIZE = randint(1024, 2048)
+KEY_SIZE = randint(2048, 4096)
 DEC_FNAME = '{0}'.format(clean(token_urlsafe(randint(8, 16)))).lower()
 
 # Encrypt function:
