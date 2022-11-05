@@ -94,7 +94,7 @@ print("\033[92mDONE\033[00m")
 # -------------------------------------- #
 print("\033[94m[*]\033[00m Encrypting payload:    ", end="")
 try:
-    payload = data[1] #.replace("\n", ";")
+    payload = data[1]
     encoded_payload = encrypt(payload, unique_key)
     print("\033[92mDONE\033[00m")
 except Exception as error:
