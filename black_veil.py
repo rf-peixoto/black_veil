@@ -16,11 +16,11 @@ print("                                       v1.5.0\033[00m")
 
 # Check args:
 if len(sys.argv) != 2:
-    print("\n\033[94m[*]\033[00m Usage: {0} path/to/file.py".format(sys.argv[0]))
+    print("\n\033[94m[*]\033[00m Usage: {0} path/to/file.py\n".format(sys.argv[0]))
     sys.exit()
 # Check System:
 if platform.system() != "Linux":
-    print("\n\033[93m[!] {0} should be used in Linux environments!\033[00m".format(sys.argv[0]))
+    print("\n\033[93m[!] {0} should be used in Linux environments!\033[00m\n".format(sys.argv[0]))
 
 # Clean Token:
 def clean(token: str) -> str:
