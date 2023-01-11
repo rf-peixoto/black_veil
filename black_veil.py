@@ -12,15 +12,15 @@ print("  __ )   |               |        \ \     /     _)  |")
 print("  __ \   |   _` |   __|  |  /      \ \   /  _ \  |  |")
 print("  |   |  |  (   |  (       <        \ \ /   __/  |  |")
 print(" ____/  _| \__,_| \___| _|\_\        \_/  \___| _| _____|")
-print("                                       v1.5.0\033[00m")
+print("                                       v1.6.0\033[00m")
 
 # Check args:
 if len(sys.argv) != 2:
     print("\n\033[94m[*]\033[00m Usage: {0} path/to/file.py\n".format(sys.argv[0]))
     sys.exit()
 # Check System:
-if platform.system() != "Linux":
-    print("\n\033[93m[!] {0} should be used in Linux environments!\033[00m\n".format(sys.argv[0]))
+if platform.system() != "Linux": #not in ["Linux", "Windows"]:
+    print("\n\033[93m[!] {0} was developed for use in Linux environments. The Windows module is still in alpha.\033[00m\n".format(sys.argv[0]))
 
 # Clean Token:
 def clean(token: str) -> str:
@@ -144,7 +144,10 @@ if generated_file:
             cmd = "pyinstaller --distpath . --name {2} --noconfirm --onefile --key {0} --noconsole {1}".format(comp_key, new_filename, sys.argv[1].split(".")[0])
             subprocess.run(cmd, shell=True)
             # Clean:
-            cmd = "rm -rf build/ {0}.spec".format(sys.argv[1].split(".")[0])
+            if platform.system() == "Windows":
+                cmd = "del /f /q build/ {0}.spec".format(sys.argv[1].split(".")[0])
+            elif platform.system() == "Linux":
+                cmd = "rm -rf build/ {0}.spec".format(sys.argv[1].split(".")[0])
             subprocess.run(cmd, shell=True)
             # SUCCESS:
             print("\033[92mDONE\033[00m")
