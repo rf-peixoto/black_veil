@@ -160,4 +160,4 @@ if generated_file:
 # -------------------------------------- #
 #  CLOSE BLACK VEIL                      #
 # -------------------------------------- #
-print("\033[94m[*]\033[00m Thank you.")
+print("\033[94m[*]\033[00m Thank you for using BlackVeil.")
