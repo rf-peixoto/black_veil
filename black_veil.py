@@ -19,7 +19,7 @@ if len(sys.argv) != 2:
     print("\n\033[94m[*]\033[00m Usage: {0} path/to/file.py\n".format(sys.argv[0]))
     sys.exit()
 # Check System:
-if platform.system() != "Linux": #not in ["Linux", "Windows"]:
+if platform.system() != "Linux": #not in ["Linux", "Windows"]: <- Test this stuff later
     print("\n\033[93m[!] {0} was developed for use in Linux environments. The Windows module is still in alpha.\033[00m\n".format(sys.argv[0]))
 
 # Clean Token:
